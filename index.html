@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://api.mapbox.com/mapbox-assembly/v0.3.0/assembly.min.css" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+        .info { position:absolute; z-index: 1000; }
+    </style>
+</head>
+<body>
+<div class='bg-darken50 color-white info right w360 h240 m18 p24'>
+    <h2 class="txt-l">Pan or zoom the map to set the location.</h2>
+    <p>wsen</p>
+    <textarea readonly id='wsen' class='textarea textarea--s txt-s color-white'></textarea>
+    <p>swne</p>
+    <textarea readonly id='swen' class='textarea textarea--s txt-s my3 color-white'></textarea>
+</div>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VvaGFja2VyIiwiYSI6ImFIN0hENW8ifQ.GGpH9gLyEg0PZf3NPQ7Vrg';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
+    center: [-74.50, 40], // starting position
+    zoom: 9,
+    hash: true
+});
+
+map.on('load', function (e) {
+    setBounds();
+    map.on('moveend', function (m) {
+        setBounds();
+    });
+});
+
+function setBounds() {
+    var bounds = map.getBounds(); // ne, sw / lat, lng
+    var n = bounds.getNorth();
+    var s = bounds.getSouth();
+    var e = bounds.getEast();
+    var w = bounds.getWest();
+    var wsen = [w, s, e, n].join(' ');
+    var swen = [s, w, e, n].join(' ');
+    document.getElementById('wsen').value = wsen;
+    document.getElementById('swen').value = swen;
+    console.log(wsen, swen);
+}
+</script>
+
+</body>
+</html>

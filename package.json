@@ -1,0 +1,19 @@
+{
+  "name": "bbox-me",
+  "version": "1.0.0",
+  "description": "easily get bbox of an area in different formats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geohacker/bbox-me.git"
+  },
+  "author": "Sajjad Anwar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geohacker/bbox-me/issues"
+  },
+  "homepage": "https://github.com/geohacker/bbox-me#readme"
+}
